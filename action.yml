@@ -1,4 +1,4 @@
-name: "Deploy WordPress to WP Engine"
+name: "Deploy WordPress to WP Engine (Freshforces' forked version)"
 branding:
   icon: "upload-cloud"
   color: "blue"
