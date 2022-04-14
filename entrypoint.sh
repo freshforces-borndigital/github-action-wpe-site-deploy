@@ -81,6 +81,10 @@ fi
 
 # Git push before sync
 if [ "${INPUT_WITH_GIT_PUSH^^}" == "TRUE" ]; then
+    # Why it's necessary? because git recently has bugfixes to address CVE-2022-24765, and this step become necessary
+    # see code: https://github.com/git/git/commit/1ac7422e39b0043250b026f9988d0da24cb2cb58#diff-c62827315018c95283562ab55db59c26e544debaad579b77a7f96ffed09c45c2R18
+    git config --global --add safe.directory $GITHUB_WORKSPACE
+
     git fetch --unshallow
     git config core.sshCommand "ssh -i $WPE_SSHG_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
     git remote -v | grep -w $WPE_ENV_NAME && git remote set-url $WPE_ENV_NAME $WPE_GIT_DESTINATION || git remote add $WPE_ENV_NAME $WPE_GIT_DESTINATION
