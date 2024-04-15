@@ -89,7 +89,7 @@ if [ "${INPUT_WITH_GIT_PUSH^^}" == "TRUE" ]; then
     git config core.sshCommand "ssh -i $WPE_SSHG_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
     git remote -v | grep -w $WPE_ENV_NAME && git remote set-url $WPE_ENV_NAME $WPE_GIT_DESTINATION || git remote add $WPE_ENV_NAME $WPE_GIT_DESTINATION
     git remote -v
-    git branch
+    echo "Destination : $WPE_ENV_NAME $GITHUB_REF:$WPE_GIT_BRANCH_DESTINATION"
     echo "Begin Git push into $WPE_GIT_DESTINATION"
     echo "With env    : $WPE_ENV_NAME"
     echo "From branch : $GITHUB_REF"
